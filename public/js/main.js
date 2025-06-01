@@ -1,32 +1,21 @@
 // Configuración de la API
 const API_URL = 'https://api.pokemontcg.io/v2/cards';
-const API_KEY = 'tu-api-key-aquí'; // ¡Reemplaza esto con tu API Key real!
+const API_KEY = 'd5a450b9-62a9-472d-aeb1-b40a6c53df5a'; // 🔒 Reemplaza con tu API Key
 
 // Elementos del DOM
 const productsContainer = document.getElementById('products');
 const searchInput = document.getElementById('search-input');
-const typeFilter = document.getElementById('type-filter');
-const setFilter = document.getElementById('set-filter');
 
 // Carrito
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-// Fetch de cartas con filtros
+// Fetch de cartas por nombre
 async function fetchPokemonCards() {
-  const type = typeFilter?.value || '';
-  const set = setFilter?.value || '';
-  const query = searchInput?.value || '';
-
-  let apiQuery = [];
-  if (type) apiQuery.push(`types:${type}`);
-  if (set) apiQuery.push(`set.name:${set}*`);
-  if (query) apiQuery.push(`name:${query}*`);
+  const query = searchInput?.value.trim() || '';
 
   try {
-    const response = await fetch(`${API_URL}?q=${apiQuery.join(' ')}&pageSize=20`, {
-      headers: {
-        'X-Api-Key': API_KEY
-      }
+    const response = await fetch(`${API_URL}?q=name:${query}*&pageSize=30`, {
+      headers: { 'X-Api-Key': API_KEY }
     });
     const data = await response.json();
     return data.data || [];
@@ -41,34 +30,47 @@ async function renderCards() {
   const cards = await fetchPokemonCards();
   productsContainer.innerHTML = '';
 
+  if (cards.length === 0) {
+    productsContainer.innerHTML = '<p class="no-results">No se encontraron cartas. ¡Prueba otro nombre!</p>';
+    return;
+  }
+
   cards.forEach(card => {
     const cardElement = document.createElement('div');
     cardElement.className = 'product-card';
     cardElement.innerHTML = `
       <img src="${card.images.small}" alt="${card.name}" loading="lazy">
       <h3>${card.name}</h3>
-      <p>${card.set.name}</p>
-      <p>$${(card.cardmarket?.prices?.averageSellPrice || 5.99).toFixed(2)}</p>
-      <button onclick="addToCart('${card.id}')">Añadir al carrito</button>
-      <a href="card-detail.html?id=${card.id}" class="detail-link">Ver detalles</a>
+      <p><strong>Expansión:</strong> ${card.set.name}</p>
+      <p><strong>Precio:</strong> $${(card.cardmarket?.prices?.averageSellPrice || 'N/A')}</p>
+      <button onclick="addToCart('${card.id}', '${card.name}')">Añadir al carrito</button>
     `;
     productsContainer.appendChild(cardElement);
   });
 }
 
 // Añadir al carrito
-function addToCart(cardId) {
+function addToCart(cardId, cardName) {
   const existingItem = cart.find(item => item.id === cardId);
   
   if (existingItem) {
     existingItem.quantity += 1;
   } else {
-    cart.push({ id: cardId, quantity: 1 });
+    cart.push({ id: cardId, name: cardName, quantity: 1 });
   }
 
   localStorage.setItem('cart', JSON.stringify(cart));
   updateCartCount();
-  alert('¡Carta añadida al carrito!');
+  
+  // Notificación
+  const notification = document.createElement('div');
+  notification.className = 'notification';
+  notification.textContent = `¡${cardName} añadida al carrito!`;
+  document.body.appendChild(notification);
+  
+  setTimeout(() => {
+    notification.remove();
+  }, 2000);
 }
 
 // Actualizar contador del carrito
@@ -79,53 +81,13 @@ function updateCartCount() {
   }
 }
 
-// Event Listeners
+// Evento de búsqueda
 if (searchInput) {
   searchInput.addEventListener('input', renderCards);
-}
-
-if (typeFilter) {
-  typeFilter.addEventListener('change', renderCards);
-}
-
-if (setFilter) {
-  setFilter.addEventListener('change', renderCards);
 }
 
 // Inicialización
 document.addEventListener('DOMContentLoaded', () => {
   renderCards();
   updateCartCount();
-  
-  // Cargar filtros guardados (opcional)
-  if (localStorage.getItem('filter-type')) {
-    typeFilter.value = localStorage.getItem('filter-type');
-  }
 });
-
-// Guardar filtros al cambiar (opcional)
-if (typeFilter) {
-  typeFilter.addEventListener('change', (e) => {
-    localStorage.setItem('filter-type', e.target.value);
-  });
-}
-function setupCardDetails() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const cardId = urlParams.get('id');
-  
-  if (cardId) {
-    fetch(`${API_URL}/${cardId}`, {
-      headers: { 'X-Api-Key': API_KEY }
-    })
-      .then(res => res.json())
-      .then(({ data }) => {
-        document.getElementById('card-detail').innerHTML = `
-          <img src="${data.images.large}" alt="${data.name}">
-          <h2>${data.name}</h2>
-          <p><strong>Expansión:</strong> ${data.set.name}</p>
-          <p><strong>Precio:</strong> $${(data.cardmarket?.prices?.averageSellPrice || 'N/A')}</p>
-          <button onclick="addToCart('${data.id}')">Comprar</button>
-        `;
-      });
-  }
-}
