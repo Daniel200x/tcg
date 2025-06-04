@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre de Mejora Especial - PokéShop</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../styles.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-pokemon">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <img src="../images/logo.webp" alt="PokéShop" width="120">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                            Productos
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="../categorias/cajas-elite.html">Cajas Élite</a></li>
+                            <li><a class="dropdown-item" href="../categorias/cajas-sobres.html">Cajas de Sobres</a></li>
+                            <li><a class="dropdown-item active" href="../categorias/sobres-mejora.html">Sobres de Mejora</a></li>
+                            <li><a class="dropdown-item" href="../categorias/cajas-coleccion.html">Cajas de Colección</a></li>
+                            <li><a class="dropdown-item" href="../categorias/cartas-gradeadas.html">Cartas Gradeadas</a></li>
+                            <li><a class="dropdown-item" href="../categorias/album-fundas.html">Álbum y Fundas</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Eventos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contacto</a>
+                    </li>
+                </ul>
+                <!-- Buscador y carrito -->
+                <div class="d-flex">
+                    <div class="search-container me-3">
+                        <input type="text" id="searchInput" placeholder="Buscar productos...">
+                        <button id="searchBtn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                        <div id="searchResults" class="search-results"></div>
+                    </div>
+                    <div class="cart-icon" id="cartIcon">
+                        <img src="../images/cart-icon.webp" alt="Carrito" width="30">
+                        <span class="cart-count">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Carrito flotante -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Tu Carrito</h3>
+            <button class="close-cart">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Items del carrito aparecerán aquí -->
+        </div>
+        <div class="cart-total">
+            Total: <span id="cartTotal">$0.00</span>
+        </div>
+        <button class="checkout-btn">Proceder al Pago</button>
+    </div>
+
+    <!-- Contenido del producto -->
+    <div class="container py-5 product-page">
+        <div class="row">
+            <!-- Galería de imágenes -->
+            <div class="col-md-6">
+                <div class="main-image mb-3">
+                    <img src="../images/sobre-mejora-1.webp" alt="Sobre de Mejora Especial" class="img-fluid">
+                </div>
+                <div class="thumbnail-gallery">
+                    <img src="../images/sobre-mejora-2.webp" alt="Contenido típico" class="img-thumbnail">
+                    <img src="../images/sobre-mejora-3.webp" alt="Cartas posibles" class="img-thumbnail">
+                    <img src="../images/sobre-mejora-4.webp" alt="Detalle de carta" class="img-thumbnail">
+                </div>
+            </div>
+
+            <!-- Información del producto -->
+            <div class="col-md-6">
+                <h1 class="product-title">Sobre de Mejora Especial</h1>
+                <div class="product-meta">
+                    <span class="sku">SKU: PKM-MEJORA-001</span>
+                    <span class="availability">Disponible</span>
+                </div>
+
+                <div class="price-container">
+                    <span class="current-price">$9.99</span>
+                    <span class="old-price">$12.99</span>
+                    <span class="discount">-23%</span>
+                </div>
+
+                <div class="product-description">
+                    <p>El Sobre de Mejora Especial está diseñado para coleccionistas serios que buscan cartas de alta calidad. Características:</p>
+                    <ul>
+                        <li>10 cartas por sobre (3 holográficas garantizadas)</li>
+                        <li>Alta probabilidad de cartas V, VMAX y secretas</li>
+                        <li>1 de cada 5 sobres contiene una carta ultra rara</li>
+                        <li>Cartas seleccionadas de múltiples expansiones</li>
+                        <li>Protección premium para cartas</li>
+                    </ul>
+                    <p><strong>Contenido típico:</strong> 3 cartas holográficas, 5 cartas comunes, 1 carta energética especial, 1 carta entrenador</p>
+                </div>
+
+                <div class="product-actions">
+                    <div class="quantity-selector">
+                        <button class="quantity-btn minus">-</button>
+                        <input type="number" value="1" min="1" id="productQuantity">
+                        <button class="quantity-btn plus">+</button>
+                    </div>
+                    <button class="add-to-cart-modal">Añadir al carrito</button>
+                </div>
+
+                <div class="product-details">
+                    <h3>Detalles del producto</h3>
+                    <table class="table">
+                        <tr>
+                            <th>Cartas por sobre</th>
+                            <td>10 cartas (3+ holográficas)</td>
+                        </tr>
+                        <tr>
+                            <th>Expansiones incluidas</th>
+                            <td>5 últimas expansiones</td>
+                        </tr>
+                        <tr>
+                            <th>Probabilidad cartas V/VMAX</th>
+                            <td>1 cada 3 sobres</td>
+                        </tr>
+                        <tr>
+                            <th>Probabilidad carta secreta</th>
+                            <td>1 cada 10 sobres</td>
+                        </tr>
+                        <tr>
+                            <th>Edad recomendada</th>
+                            <td>6+ años</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección de productos relacionados -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <h2 class="related-products-title">Productos relacionados</h2>
+            </div>
+            <div class="col-md-4">
+                <div class="related-product">
+                    <a href="../productos/lote-5-sobres.html">
+                        <img src="../images/lote-sobres.webp" alt="Lote de 5 Sobres" class="img-fluid">
+                        <h3>Lote de 5 Sobres</h3>
+                        <p class="price">$39.99</p>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="related-product">
+                    <a href="../productos/caja-36-sobres.html">
+                        <img src="../images/cajas-sobres.webp" alt="Caja de 36 Sobres" class="img-fluid">
+                        <h3>Caja de 36 Sobres</h3>
+                        <p class="price">$129.99</p>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="related-product">
+                    <a href="../productos/sobre-legendario.html">
+                        <img src="../images/sobre-legendario.webp" alt="Sobre Legendario" class="img-fluid">
+                        <h3>Sobre Legendario</h3>
+                        <p class="price">$14.99</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h4>PokéShop</h4>
+                    <p>La tienda oficial de Pokémon TCG en línea.</p>
+                </div>
+                <div class="col-md-4">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul>
+                        <li><a href="#">Términos y condiciones</a></li>
+                        <li><a href="#">Política de privacidad</a></li>
+                        <li><a href="#">Envíos y devoluciones</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h4>Contacto</h4>
+                    <p>info@pokeshop.com<br>+34 123 456 789</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2023 PokéShop - Todos los derechos reservados
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../scripts.js"></script>
+</body>
+</html>

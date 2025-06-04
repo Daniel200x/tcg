@@ -1,0 +1,925 @@
+:root {
+    --red-pokemon: #e60012;
+    --yellow-pokemon: #ffcb05;
+    --blue-pokemon: #2a75bb;
+    --dark-bg: #111;
+    --light-text: #fff;
+    --dark-red: #cc0011;
+    --dark-yellow: #e6b800;
+}
+
+/* Estilos base */
+body {
+    background-color: var(--dark-bg);
+    color: var(--light-text);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-top: 0;
+    position: relative;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Barra de navegación */
+.navbar {
+    background-color: var(--red-pokemon);
+    padding: 15px 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-brand img {
+    transition: transform 0.3s;
+}
+
+.navbar-brand:hover img {
+    transform: scale(1.1);
+}
+
+.nav-link {
+    color: var(--light-text) !important;
+    font-weight: 500;
+    margin: 0 10px;
+    position: relative;
+    transition: color 0.3s;
+}
+
+.nav-link:hover {
+    color: var(--yellow-pokemon) !important;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--yellow-pokemon);
+    transition: width 0.3s;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.dropdown-menu {
+    background-color: var(--dark-bg);
+    border: 1px solid #333;
+}
+
+.dropdown-item {
+    color: var(--light-text);
+}
+
+.dropdown-item:hover {
+    background-color: var(--red-pokemon);
+    color: var(--light-text);
+}
+
+/* Hero section */
+.hero-section {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/hero-bg.webp') no-repeat center center;
+    background-size: cover;
+    padding: 100px 0;
+    margin-bottom: 0;
+}
+
+.hero-section h1 {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 3rem;
+    color: var(--yellow-pokemon);
+    text-shadow: 3px 3px 0 var(--red-pokemon);
+    margin-bottom: 20px;
+}
+
+.hero-section .lead {
+    font-size: 1.5rem;
+    color: var(--light-text);
+}
+
+/* Sección de categorías */
+.section-title {
+    text-align: center;
+    margin: 40px 0 30px;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--yellow-pokemon);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+}
+
+.section-title span {
+    color: var(--red-pokemon);
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(to right, var(--red-pokemon), var(--yellow-pokemon));
+    margin: 15px auto;
+    border-radius: 2px;
+}
+
+.category-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Tarjetas de categoría */
+.category-card {
+    position: relative;
+    margin-bottom: 30px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.category-card::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -5px;
+    right: -5px;
+    bottom: -5px;
+    background: linear-gradient(45deg, 
+        var(--red-pokemon), 
+        var(--yellow-pokemon), 
+        var(--blue-pokemon));
+    z-index: -1;
+    border-radius: 20px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.category-card:hover::before {
+    opacity: 0.7;
+}
+
+.col-image-wrap {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    height: 100%;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+}
+
+.col-image-wrap:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 12px 30px rgba(230, 0, 18, 0.3);
+    z-index: 10;
+}
+
+.col-image-wrap img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    border-radius: 15px;
+}
+
+.col-image-wrap:hover img {
+    transform: scale(1.05);
+}
+
+.category-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(230, 0, 18, 0.85);
+    color: white;
+    text-align: center;
+    padding: 15px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.col-image-wrap:hover .category-label {
+    background: rgba(255, 203, 5, 0.9);
+    color: var(--dark-bg);
+    transform: translateY(0);
+}
+
+.zoom {
+    overflow: hidden;
+    border-radius: 15px;
+}
+
+/* Productos destacados */
+.featured-products {
+    background-color: #0a0a0a;
+    margin-top: 50px;
+}
+
+.featured-products .product-card {
+    border: 2px solid var(--yellow-pokemon);
+}
+
+.featured-products .product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(255, 203, 5, 0.3);
+}
+
+.featured-products .price {
+    font-size: 1.5rem;
+}
+
+.featured-products .old-price {
+    text-decoration: line-through;
+    color: #777;
+    font-size: 1rem;
+    margin-left: 10px;
+}
+
+/* Buscador */
+.search-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+#searchInput {
+    padding: 8px 15px;
+    border-radius: 20px;
+    border: none;
+    width: 200px;
+    transition: width 0.3s;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+#searchInput:focus {
+    width: 250px;
+    outline: none;
+    background-color: white;
+}
+
+#searchBtn {
+    background: none;
+    border: none;
+    color: var(--light-text);
+    cursor: pointer;
+    margin-left: -35px;
+    font-size: 1rem;
+}
+
+.search-results {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    z-index: 1000;
+    display: none;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.search-results a {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    color: #333;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.search-results a:hover {
+    background-color: #f5f5f5;
+}
+
+.search-results img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    margin-right: 10px;
+    border-radius: 3px;
+}
+
+.search-result-title {
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+
+.search-result-price {
+    color: var(--red-pokemon);
+    font-size: 0.9rem;
+}
+
+.no-results {
+    padding: 10px;
+    color: #666;
+    font-style: italic;
+}
+
+/* Icono del carrito */
+.cart-icon {
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s;
+    margin-left: 15px;
+}
+
+.cart-icon:hover {
+    transform: scale(1.1);
+}
+
+.cart-count {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: var(--yellow-pokemon);
+    color: var(--dark-bg);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Carrito lateral */
+.cart-sidebar {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 400px;
+    height: 100%;
+    background: var(--dark-bg);
+    box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+    z-index: 1050;
+    transition: right 0.3s;
+    padding: 20px;
+    border-left: 3px solid var(--yellow-pokemon);
+}
+
+.cart-sidebar.open {
+    right: 0;
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #333;
+}
+
+.close-cart {
+    background: none;
+    border: none;
+    color: var(--light-text);
+    font-size: 24px;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-cart:hover {
+    color: var(--yellow-pokemon);
+}
+
+.cart-items {
+    margin-bottom: 20px;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #333;
+}
+
+.cart-item img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.cart-item-info {
+    flex: 1;
+    padding: 0 15px;
+}
+
+.cart-item-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+.cart-item-price {
+    color: var(--yellow-pokemon);
+    font-size: 0.9rem;
+}
+
+.remove-item {
+    color: #ff6b6b;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: color 0.2s;
+}
+
+.remove-item:hover {
+    color: var(--red-pokemon);
+}
+
+.cart-total {
+    text-align: right;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.checkout-btn {
+    width: 100%;
+    padding: 12px;
+    background: var(--yellow-pokemon);
+    color: var(--dark-bg);
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.checkout-btn:hover {
+    background: var(--dark-yellow);
+}
+
+/* Footer */
+.footer {
+    background: #0a0a0a;
+    padding: 40px 0 20px;
+    margin-top: 60px;
+}
+
+.footer h4 {
+    color: var(--yellow-pokemon);
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+.footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer ul li {
+    margin-bottom: 10px;
+}
+
+.footer ul li a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer ul li a:hover {
+    color: var(--yellow-pokemon);
+}
+
+.social-icons {
+    margin-top: 15px;
+}
+
+.social-icons a {
+    display: inline-block;
+    color: var(--light-text);
+    background: #333;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 36px;
+    margin-right: 10px;
+    transition: background 0.3s;
+}
+
+.social-icons a:hover {
+    background: var(--red-pokemon);
+}
+
+.copyright {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+    color: #777;
+    font-size: 0.9rem;
+}
+
+/* Estilos para páginas de categoría */
+.category-title {
+    color: var(--yellow-pokemon);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.category-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(to right, var(--red-pokemon), var(--yellow-pokemon));
+    border-radius: 2px;
+}
+
+.category-description {
+    color: #ccc;
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.product-card {
+    background: #1e1e1e;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #333;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(230, 0, 18, 0.2);
+}
+
+.product-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.product-info {
+    padding: 15px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-info h3 {
+    margin-top: 0;
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.product-info h3 a {
+    color: var(--light-text);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.product-info h3 a:hover {
+    color: var(--yellow-pokemon);
+}
+
+.price {
+    color: var(--yellow-pokemon);
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin: 10px 0;
+}
+
+.product-excerpt {
+    color: #aaa;
+    font-size: 0.9rem;
+    flex-grow: 1;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.add-to-cart {
+    width: 100%;
+    padding: 8px;
+    background: var(--red-pokemon);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: auto;
+}
+
+.add-to-cart:hover {
+    background: var(--dark-red);
+}
+
+/* Estilos para páginas de producto */
+.product-page {
+    padding: 40px 0;
+}
+
+.main-image {
+    margin-bottom: 20px;
+}
+
+.main-image img {
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #333;
+}
+
+.thumbnail-gallery {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.thumbnail-gallery .img-thumbnail {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    cursor: pointer;
+    border: 1px solid #444;
+    transition: border-color 0.2s;
+    border-radius: 5px;
+}
+
+.thumbnail-gallery .img-thumbnail:hover {
+    border-color: var(--yellow-pokemon);
+}
+
+.product-meta {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 1rem;
+    color: #777;
+    font-size: 0.9rem;
+}
+
+.price-container {
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+}
+
+.current-price {
+    font-size: 1.8rem;
+    color: var(--yellow-pokemon);
+    font-weight: bold;
+}
+
+.old-price {
+    text-decoration: line-through;
+    color: #777;
+    margin-left: 10px;
+    font-size: 1.2rem;
+}
+
+.discount {
+    background: var(--red-pokemon);
+    color: white;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    margin-left: 10px;
+}
+
+.product-actions {
+    margin: 30px 0;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.quantity-selector {
+    display: flex;
+    align-items: center;
+}
+
+.quantity-btn {
+    width: 30px;
+    height: 30px;
+    background: var(--red-pokemon);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.quantity-btn:hover {
+    background: var(--dark-red);
+}
+
+#productQuantity {
+    width: 50px;
+    text-align: center;
+    margin: 0 10px;
+    background: #333;
+    color: white;
+    border: 1px solid #555;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.add-to-cart-modal {
+    padding: 12px 25px;
+    background: var(--yellow-pokemon);
+    color: var(--dark-bg);
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.add-to-cart-modal:hover {
+    background: var(--dark-yellow);
+}
+
+.product-details {
+    margin: 40px 0;
+}
+
+.product-details h3 {
+    color: var(--yellow-pokemon);
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.product-details table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.product-details th, 
+.product-details td {
+    padding: 12px;
+    border-bottom: 1px solid #333;
+    text-align: left;
+}
+
+.product-details th {
+    color: var(--yellow-pokemon);
+    width: 30%;
+}
+
+.related-products-title {
+    color: var(--yellow-pokemon);
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--red-pokemon);
+}
+
+.related-product {
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.related-product:hover {
+    transform: translateY(-5px);
+}
+
+.related-product img {
+    border-radius: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border: 1px solid #333;
+}
+
+.related-product h3 {
+    font-size: 1.1rem;
+    margin: 10px 0 5px;
+}
+
+.related-product h3 a {
+    color: var(--light-text);
+    transition: color 0.2s;
+}
+
+.related-product h3 a:hover {
+    color: var(--yellow-pokemon);
+}
+
+.related-product .price {
+    color: var(--yellow-pokemon);
+    font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .hero-section h1 {
+        font-size: 2.5rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .category-label {
+        font-size: 1.1rem;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar-brand img {
+        width: 100px;
+    }
+    
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-section .lead {
+        font-size: 1.2rem;
+    }
+    
+    .col-md-4 {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+    
+    .cart-sidebar {
+        width: 320px;
+    }
+    
+    .product-page .row {
+        flex-direction: column;
+    }
+    
+    .product-page .col-md-6 {
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 576px) {
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .col-4, .col-md-4 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    
+    .search-container {
+        margin-top: 15px;
+        width: 100%;
+    }
+    
+    #searchInput {
+        width: 100%;
+    }
+    
+    #searchInput:focus {
+        width: 100%;
+    }
+    
+    .cart-sidebar {
+        width: 100%;
+    }
+    
+    .footer .col-md-4 {
+        margin-bottom: 30px;
+    }
+}

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Charizard Gradeado - PokéShop</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../styles.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-pokemon">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <img src="../images/logo.webp" alt="PokéShop" width="120">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                            Productos
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="../categorias/cajas-elite.html">Cajas Élite</a></li>
+                            <li><a class="dropdown-item" href="../categorias/cajas-sobres.html">Cajas de Sobres</a></li>
+                            <li><a class="dropdown-item" href="../categorias/sobres-mejora.html">Sobres de Mejora</a></li>
+                            <li><a class="dropdown-item" href="../categorias/cajas-coleccion.html">Cajas de Colección</a></li>
+                            <li><a class="dropdown-item active" href="../categorias/cartas-gradeadas.html">Cartas Gradeadas</a></li>
+                            <li><a class="dropdown-item" href="../categorias/album-fundas.html">Álbum y Fundas</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Eventos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contacto</a>
+                    </li>
+                </ul>
+                <!-- Buscador y carrito -->
+                <div class="d-flex">
+                    <div class="search-container me-3">
+                        <input type="text" id="searchInput" placeholder="Buscar productos...">
+                        <button id="searchBtn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                        <div id="searchResults" class="search-results"></div>
+                    </div>
+                    <div class="cart-icon" id="cartIcon">
+                        <img src="../images/cart-icon.webp" alt="Carrito" width="30">
+                        <span class="cart-count">0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Carrito flotante -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Tu Carrito</h3>
+            <button class="close-cart">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Items del carrito aparecerán aquí -->
+        </div>
+        <div class="cart-total">
+            Total: <span id="cartTotal">$0.00</span>
+        </div>
+        <button class="checkout-btn">Proceder al Pago</button>
+    </div>
+
+    <!-- Contenido del producto -->
+    <div class="container py-5 product-page">
+        <div class="row">
+            <!-- Galería de imágenes -->
+            <div class="col-md-6">
+                <div class="main-image mb-3">
+                    <img src="../images/charizard-gradeado-1.webp" alt="Charizard Gradeado" class="img-fluid">
+                </div>
+                <div class="thumbnail-gallery">
+                    <img src="../images/charizard-gradeado-2.webp" alt="Certificado PSA" class="img-thumbnail">
+                    <img src="../images/charizard-gradeado-3.webp" alt="Vista posterior" class="img-thumbnail">
+                    <img src="../images/charizard-gradeado-4.webp" alt="Estuche protector" class="img-thumbnail">
+                </div>
+            </div>
+
+            <!-- Información del producto -->
+            <div class="col-md-6">
+                <h1 class="product-title">Charizard Gradeado PSA 10</h1>
+                <div class="product-meta">
+                    <span class="sku">SKU: PKM-GRADEADA-001</span>
+                    <span class="availability">Última unidad</span>
+                </div>
+
+                <div class="price-container">
+                    <span class="current-price">$499.99</span>
+                    <span class="old-price">$599.99</span>
+                    <span class="discount">-17%</span>
+                </div>
+
+                <div class="product-description">
+                    <p>El Santo Grial de las cartas Pokémon, Charizard holográfico de la edición Base Set (1999) en perfecto estado, certificado PSA 10 (GEM MINT). Características:</p>
+                    <ul>
+                        <li>Certificación PSA 10 (GEM MINT) - calidad perfecta</li>
+                        <li>Encapsulado en estuche protector PSA de grado profesional</li>
+                        <li>Certificado de autenticidad incluido</li>
+                        <li>Centrado perfecto (55/45 o mejor)</li>
+                        <li>Superficie impecable sin rayones ni defectos</li>
+                        <li>Bordes y esquinas perfectamente conservados</li>
+                    </ul>
+                    <p><strong>Nota:</strong> Esta es una carta de colección, no está destinada para juego.</p>
+                </div>
+
+                <div class="product-actions">
+                    <div class="quantity-selector">
+                        <button class="quantity-btn minus">-</button>
+                        <input type="number" value="1" min="1" max="1" id="productQuantity">
+                        <button class="quantity-btn plus">+</button>
+                    </div>
+                    <button class="add-to-cart-modal">Añadir al carrito</button>
+                </div>
+
+                <div class="product-details">
+                    <h3>Detalles del producto</h3>
+                    <table class="table">
+                        <tr>
+                            <th>Número PSA</th>
+                            <td>6789012345</td>
+                        </tr>
+                        <tr>
+                            <th>Edición</th>
+                            <td>Base Set (1999)</td>
+                        </tr>
+                        <tr>
+                            <th>Número de carta</th>
+                            <td>4/102</td>
+                        </tr>
+                        <tr>
+                            <th>Fecha certificación</th>
+                            <td>15 Enero 2023</td>
+                        </tr>
+                        <tr>
+                            <th>Estado</th>
+                            <td>GEM MINT (PSA 10)</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección de productos relacionados -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <h2 class="related-products-title">Productos relacionados</h2>
+            </div>
+            <div class="col-md-4">
+                <div class="related-product">
+                    <a href="../productos/blastoise-gradeado.html">
+                        <img src="../images/blastoise-gradeado.webp" alt="Blastoise Gradeado" class="img-fluid">
+                        <h3>Blastoise Gradeado 9</h3>
+                        <p class="price">$299.99</p>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="related-product">
+                    <a href="../productos/venusaur-gradeado.html">
+                        <img src="../images/venusaur-gradeado.webp" alt="Venusaur Gradeado" class="img-fluid">
+                        <h3>Venusaur Gradeado 9</h3>
+                        <p class="price">$279.99</p>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="related-product">
+                    <a href="../productos/caja-coleccion-especial.html">
+                        <img src="../images/cajas-coleccion.webp" alt="Caja Colección Especial" class="img-fluid">
+                        <h3>Caja Colección Especial</h3>
+                        <p class="price">$79.99</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h4>PokéShop</h4>
+                    <p>La tienda oficial de Pokémon TCG en línea.</p>
+                </div>
+                <div class="col-md-4">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul>
+                        <li><a href="#">Términos y condiciones</a></li>
+                        <li><a href="#">Política de privacidad</a></li>
+                        <li><a href="#">Envíos y devoluciones</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h4>Contacto</h4>
+                    <p>info@pokeshop.com<br>+34 123 456 789</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            © 2023 PokéShop - Todos los derechos reservados
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../scripts.js"></script>
+</body>
+</html>
